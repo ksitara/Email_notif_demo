@@ -2,14 +2,21 @@ package com.example.demo.controller;
 
 import com.example.demo.model.UserEntity;
 import com.example.demo.service.UserService;
+
+import freemarker.template.TemplateException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import java.io.IOException;
 import java.util.List;
 
 @RestController
+@ComponentScan(basePackages = "com.example.demo")
 public class MyRestController {
 
     @Autowired
@@ -38,8 +45,8 @@ public class MyRestController {
     }
 
     @RequestMapping(path = "/sendEmail", method = RequestMethod.GET)
-    public ResponseEntity sendEmail(@RequestHeader("emailTo") String emailTo) {
-        userService.sendSimpleMessage(emailTo);
+    public ResponseEntity sendEmail(@RequestHeader("emailTo") String emailTo, @RequestHeader("userName") String userName) throws IOException, TemplateException {
+        userService.sendSimpleMessage(emailTo, userName);
         return ResponseEntity.ok().build();
     }
 

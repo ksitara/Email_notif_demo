@@ -54,9 +54,12 @@
 			<artifactId>hibernate-envers</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-
-
+		<dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
 	</dependencies>
+
 
 	<build>
 		<plugins>
